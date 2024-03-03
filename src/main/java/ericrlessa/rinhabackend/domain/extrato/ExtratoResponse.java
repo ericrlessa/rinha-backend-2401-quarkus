@@ -1,7 +1,7 @@
-package org.acme.extrato;
+package ericrlessa.rinhabackend.domain.extrato;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
-import org.acme.model.Transacao;
+import ericrlessa.rinhabackend.domain.transacao.Transacao;
 
 import java.util.List;
 

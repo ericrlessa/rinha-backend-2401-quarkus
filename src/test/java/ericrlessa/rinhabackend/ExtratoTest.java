@@ -1,6 +1,5 @@
-package org.acme;
+package ericrlessa.rinhabackend;
 
-import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 

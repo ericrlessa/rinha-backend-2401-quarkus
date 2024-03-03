@@ -1,7 +1,7 @@
-package org.acme.extrato;
+package ericrlessa.rinhabackend.rs;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
-import org.acme.model.Transacao;
+import ericrlessa.rinhabackend.domain.transacao.Transacao;
 
 @RegisterForReflection
 public record TransacaoForm(Double valor, String tipo, String descricao) {

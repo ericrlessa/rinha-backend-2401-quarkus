@@ -1,8 +1,8 @@
-package org.acme;
+package ericrlessa.rinhabackend;
 
 
+import ericrlessa.rinhabackend.domain.Cliente;
 import jakarta.transaction.Transactional;
-import org.acme.model.Cliente;
 import org.junit.jupiter.api.BeforeEach;
 
 public abstract class AbstractTest {

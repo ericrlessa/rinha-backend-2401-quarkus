@@ -1,4 +1,4 @@
-package org.acme;
+package ericrlessa.rinhabackend.domain.transacao;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 

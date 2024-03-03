@@ -1,4 +1,4 @@
-package org.acme.model;
+package ericrlessa.rinhabackend.domain;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.Entity;

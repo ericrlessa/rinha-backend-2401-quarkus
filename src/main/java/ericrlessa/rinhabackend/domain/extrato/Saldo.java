@@ -1,4 +1,4 @@
-package org.acme.extrato;
+package ericrlessa.rinhabackend.domain.extrato;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
