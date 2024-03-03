@@ -10,11 +10,11 @@
 #
 # Then, build the image with:
 #
-# docker build -f src/main/docker/Dockerfile.native-micro -t rinha/transacao .
+# docker build -f src/main/docker/Dockerfile.native-micro -t ericlessa/rinha-backend-2401-quarkus .
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 8080:8080 quarkus/getting-started
+# docker run -i --rm -p 8080:8080 ericlessa/rinha-backend-2401-quarkus
 #
 ###
 FROM quay.io/quarkus/quarkus-micro-image:2.0
