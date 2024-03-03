@@ -1,7 +1,6 @@
 package org.acme;
 
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
-import io.quarkus.panache.common.Page;
 import io.quarkus.panache.common.Sort;
 import jakarta.persistence.LockModeType;
 import jakarta.transaction.Transactional;
@@ -80,9 +79,9 @@ public class ClienteRest {
     public Response extrato(@PathParam("id") Integer id, TransacaoResponse transacaoResponse){
         if (clientIsNotValid(id)) return Response.status(404).build();
 
-        Cliente c = Cliente.findById(id, LockModeType.PESSIMISTIC_READ);
+        Cliente c = Cliente.findById(id);
 
-        PanacheQuery<Transacao> transacoes = Transacao.find("clienteId", Sort.descending("id"), id);
+        PanacheQuery<Transacao> transacoes = Transacao.find("clienteId", Sort.descending("realizada_em"), id);
         //transacoes.page(Page.ofSize(10));
         transacoes.range(0, 10);
 
