@@ -9,8 +9,6 @@ import jakarta.ws.rs.WebApplicationException;
 @ApplicationScoped
 public class GerenciadorTransacao extends GerenciadorAbstract {
 
-    public static final Integer UNPROCESSABLE_ENTITY = 422;
-
     public TransacaoResponse debito(Transacao transacao){
         validarClienteExistente(transacao.clienteId);
         validarDescricao(transacao.descricao);
