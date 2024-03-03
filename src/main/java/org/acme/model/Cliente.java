@@ -24,4 +24,8 @@ public class Cliente extends PanacheEntityBase {
     public static Cliente of(Long id, Long limite, Long saldoInicial){
         return new Cliente(id, limite, saldoInicial);
     }
+
+    public static Cliente of(Long id, Long limite){
+        return new Cliente(id, limite, 0l);
+    }
 }

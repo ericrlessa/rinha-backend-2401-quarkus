@@ -8,12 +8,28 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
-public class ExtratoRestTest{
+public class TransacaoTest extends AbstractTest{
 
     @Test
     @TestTransaction
-    public void testExtrato(){
+    public void testDebito(){
+        given().contentType("application/json")
+                .body("""
+                        {"valor": 1000,
+                         "tipo": "d",
+                         "descricao": "descricao"}
+                        """)
+                .when()
+                .post("/clientes/1/transacoes")
+                .then()
+                .statusCode(200)
+                .body("limite", is(100000))
+                .body("saldo", is(-1000));
+    }
 
+    @Test
+    @TestTransaction
+    public void testCredito(){
         given().contentType("application/json")
                 .body("""
                         {"valor": 1000,
@@ -26,45 +42,47 @@ public class ExtratoRestTest{
                 .statusCode(200)
                 .body("limite", is(100000))
                 .body("saldo", is(1000));
+    }
 
+    @Test
+    public void testErroValorDecimal(){
         given().contentType("application/json")
                 .body("""
-                        {"valor": 5000,
+                        {"valor": 1.2,
                          "tipo": "c",
                          "descricao": "descricao"}
                         """)
                 .when()
                 .post("/clientes/1/transacoes")
                 .then()
-                .statusCode(200)
-                .body("limite", is(100000))
-                .body("saldo", is(6000));
-
+                .statusCode(422);
+    }
+    @Test
+    public void testErroTipoTransacao(){
         given().contentType("application/json")
                 .body("""
-                        {"valor": 5000,
-                         "tipo": "d",
+                        {"valor": 1,
+                         "tipo": "x",
                          "descricao": "descricao"}
                         """)
                 .when()
                 .post("/clientes/1/transacoes")
                 .then()
-                .statusCode(200)
-                .body("limite", is(100000))
-                .body("saldo", is(1000));
+                .statusCode(422);
+    }
 
+    @Test
+    public void testErroClienteNaoEncontrado(){
         given().contentType("application/json")
+                .body("""
+                        {"valor": 1,
+                         "tipo": "c",
+                         "descricao": "descricao"}
+                        """)
                 .when()
-                .get("/clientes/1/extrato")
+                .post("/clientes/6/transacoes")
                 .then()
-                .statusCode(200)
-                .body("saldo.total", is(1000))
-                .body("saldo.limite", is(100000))
-                .body("ultimas_transacoes[0].valor", is(5000))
-                .body("ultimas_transacoes[0].tipo", is("d"))
-                .body("ultimas_transacoes[0].descricao", is("descricao"))
-                .extract().path("ultimas_transacoes[0].realizada_em");
-
+                .statusCode(404);
     }
 
 }
