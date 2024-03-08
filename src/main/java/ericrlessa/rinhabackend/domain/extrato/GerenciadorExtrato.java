@@ -8,7 +8,7 @@ import io.quarkus.panache.common.Page;
 import io.quarkus.panache.common.Sort;
 import jakarta.enterprise.context.ApplicationScoped;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @ApplicationScoped
 public class GerenciadorExtrato extends GerenciadorAbstract {
@@ -21,6 +21,6 @@ public class GerenciadorExtrato extends GerenciadorAbstract {
         PanacheQuery<Transacao> transacoes = Transacao.find("clienteId", Sort.descending("realizada_em"), id);
         transacoes.page(Page.ofSize(10));
 
-        return new ExtratoResponse(new Saldo(c.saldo, LocalDateTime.now(), c.limite), transacoes.list());
+        return new ExtratoResponse(new Saldo(c.saldo, Instant.now(), c.limite), transacoes.list());
     }
 }

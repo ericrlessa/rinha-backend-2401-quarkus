@@ -3,8 +3,7 @@ package ericrlessa.rinhabackend.domain.transacao;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Entity;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.Instant;
 
 @Entity
 public class Transacao extends PanacheEntity {
@@ -17,7 +16,7 @@ public class Transacao extends PanacheEntity {
 
     public String descricao;
 
-    public LocalDateTime realizada_em;
+    public Instant realizada_em;
 
     Transacao(){}
 
@@ -26,6 +25,6 @@ public class Transacao extends PanacheEntity {
         this.valor = valor;
         this.tipo = tipo;
         this.descricao = descricao;
-        this.realizada_em = LocalDateTime.now(ZoneOffset.UTC);
+        this.realizada_em = Instant.now();
     }
 }
