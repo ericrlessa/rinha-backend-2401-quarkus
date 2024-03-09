@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   api01: &api
-    image: ericlessa/rinha-backend-2401-quarkus
+    image: ericlessa/rinha-backend-2401-quarkus:1.0
     hostname: api01
     environment:
       - QUARKUS_PROFILE="prod"
