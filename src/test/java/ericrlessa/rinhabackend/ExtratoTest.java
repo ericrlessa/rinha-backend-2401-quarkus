@@ -73,6 +73,7 @@ public class ExtratoTest extends AbstractTest{
                 .statusCode(200)
                 .body("saldo.total", is(2500))
                 .body("saldo.limite", is(100000))
+                .body("saldo.data_extrato", matchesPattern(DATE_FORMAT))
                 .body("ultimas_transacoes[0].valor", is(2000))
                 .body("ultimas_transacoes[0].tipo", is("d"))
                 .body("ultimas_transacoes[0].descricao", is("devolve"))
