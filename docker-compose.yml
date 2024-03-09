@@ -13,8 +13,8 @@ services:
     # Não é necessário expor qualquer porta além da porta do load balancer,
     # mas é comum as pessoas o fazerem para testarem suas APIs e conectarem
     # ao banco de dados na fase de desenvolvimento.
-    ports:
-      - "8081:8080"
+#    ports:
+#      - "8081:8080"
     depends_on:
       - db
     deploy:
@@ -27,8 +27,8 @@ services:
     # Essa sintaxe reusa o que foi declarado em 'api01'.
     <<: *api
     hostname: api02
-    ports:
-      - "8082:8080"
+#    ports:
+#      - "8082:8080"
 
   nginx:
     image: nginx:latest
@@ -54,8 +54,8 @@ services:
       - POSTGRES_PASSWORD=123
       - POSTGRES_USER=admin
       - POSTGRES_DB=rinha
-    ports:
-      - "5432:5432"
+#    ports:
+#      - "5432:5432"
     volumes:
       - ./script.sql:/docker-entrypoint-initdb.d/script.sql
     deploy:
